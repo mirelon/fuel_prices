@@ -1,24 +1,12 @@
-# README
+Aplikácia si vypýta od užívateľa povolenie k jeho lokácii. Podľa nej nájde čerpaciu stanicu najbližšiu k nemu a ponúkne možnosť zaznamenania ceny nafty.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Zoznam čerpacích staníc je zozbieraný pomocou služby http://overpass-turbo.eu/ touto query:
 
-Things you may want to cover:
+    (
+      area[name="Slovensko"];(node[amenity=fuel](area););
+    );
+    out;
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Plány do budúcna
+- poskytnúť možnosti vyhľadávania čerpacej stanice
+- umožniť zaznamenanie ceny aj iných typov paliva
