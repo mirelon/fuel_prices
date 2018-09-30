@@ -1,0 +1,14 @@
+%h1
+  = @station.name
+#price-wrapper
+  - if @station.price
+    #{@station.price}€
+    %br
+    Posledná aktualizácia
+    = @station.posledna_aktualizacia
+  - else
+    Nikto ešte nezaznamenal cenu.
+  %br/
+  %input#station-id{type: 'hidden', value: @station.id}
+  %input#price-input
+  %input#submit{type: 'button', value: 'Zaznamenaj cenu'}

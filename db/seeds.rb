@@ -12,7 +12,7 @@ xml.css('node').each do |node|
   id = node.attr('id')
   puts "Parsing #{id}"
   lat = node.attr('lat')
-  lng = node.attr('lng')
+  lng = node.attr('lon')
   brand = node.css('tag[k=brand]').first.try(:attr, 'v')
   name = node.css('tag[k=name]').first.try(:attr, 'v')
   operator = node.css('tag[k=operator]').first.try(:attr, 'v')
