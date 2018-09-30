@@ -1,0 +1,40 @@
+Počet čerpacích staníc na Slovensku:
+= @stations.count
+
+%table{border: 1, style: 'float: left;'}
+  %tr
+    %td
+      Brand
+    %td
+      = '#'
+  - @stations.group(:brand).count.sort_by{|k,v| -v}.each do |brand, count|
+    %tr
+      %td
+        = brand
+      %td
+        = count
+
+%table{border: 1, style: 'float: left;'}
+  %tr
+    %td
+      Name
+    %td
+      = '#'
+  - @stations.group(:name).count.sort_by{|k,v| -v}.each do |name, count|
+    %tr
+      %td
+        = name
+      %td
+        = count
+%table{border: 1, style: 'float: left;'}
+  %tr
+    %td
+      Operator
+    %td
+      = '#'
+  - @stations.group(:operator).count.sort_by{|k,v| -v}.each do |operator, count|
+    %tr
+      %td
+        = operator
+      %td
+        = count
