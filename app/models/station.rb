@@ -11,7 +11,21 @@ class Station < ApplicationRecord
 
   def as_json(options)
     super.as_json(options).merge({
-        posledna_aktualizacia: posledna_aktualizacia
+        posledna_aktualizacia: posledna_aktualizacia,
+        display_name: display_name
                                  })
+  end
+
+  def display_name
+    common_names = %w(Slovnaft OMV Shell Benzinol Jurki Gulf Lukoil Oliva Tesco Oktan Tanker Avanti GAS Metro Agip)
+    names = [name, brand, operator].uniq.compact
+    intersect_names = names & common_names
+    if intersect_names.present?
+      intersect_names.first
+    elsif names.present?
+      names.first
+    else
+      'Bez názvu'
+    end
   end
 end

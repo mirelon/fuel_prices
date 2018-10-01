@@ -39,6 +39,7 @@ gem 'database_cleaner'
 gem 'haml'
 gem 'jquery-rails'
 gem 'geokit-rails'
+gem 'leaflet-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
