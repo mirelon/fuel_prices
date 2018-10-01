@@ -18,7 +18,7 @@ getZoom = (distance) ->
 
 $ ->
   navigator.geolocation.getCurrentPosition (position) ->
-    url = "http://localhost:3000/#{position.coords.latitude}/#{position.coords.longitude}"
+    url = "/#{position.coords.latitude}/#{position.coords.longitude}"
     console.log(url)
     $.ajax
       url: url,
