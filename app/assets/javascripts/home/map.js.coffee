@@ -4,22 +4,30 @@ $ ->
     console.log(url)
     $.ajax
       url: url,
-      success: (data) ->
-        distance = data.distance
-        km = parseInt(distance)
-        m = parseInt(1000 * (distance - km))
-        details = ' ('
-        if km > 0
-          details += km + 'km, '
-        if m > 0
-          details += m + 'm'
-        if data.station.price
-          details += ', ' + data.station.price + '€, posledná aktualizácia: ' + data.station.posledna_aktualizacia
+      success: (list) ->
+        first = list[0]
+        if first.distance < 0.2 && second.distance > 2 * first.distance
+#         only first
+          showNearest(item)
+          $('#choose-from').hide()
+        else if first.distance < 0.2
+#          alternatives are those with distance < 2 * first.distance
+          showNearest(item)
+          showMultiple(list, 2 * first.distance)
         else
-          details += ', nikto ešte nezaznamenal cenu'
-        details += ')'
+#          choose from those with distance < 2 * first.distance
+          console.log("Choose from multiple")
+          showMultiple(list, 2 * first.distance)
+          $('#nearest').hide()
 
-        $('#details').text(details)
-        $('#nearest-link').text(data.station.name)
-        $('#nearest-link').attr('href', data.station.id)
+showNearest = (item) ->
+  $('#details').text("#{item.station.name} (#{item.distance_readable}) - #{item.cena_readable}")
+  $('#nearest-link').text(item.station.name)
+  $('#nearest-link').attr('href', item.station.id)
+  $('#nearest').show()
 
+showMultiple = (list, max_dist) ->
+  for item in list
+    if item.distance <= max_dist
+      $('#choose-from').append("<li>#{item.station.name} (#{item.distance_readable}) - #{item.cena_readable}</li>")
+  $('#choose-from').show()
