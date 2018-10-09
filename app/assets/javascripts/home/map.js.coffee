@@ -17,6 +17,10 @@ getZoom = (distance) ->
   if rawZoom > 18 then 18 else if rawZoom < 8 then 8 else rawZoom
 
 $ ->
+  map.locate({setView: true})
+  map.on 'locationfound', (e) ->
+    radius = e.accuracy / 2
+    L.circle(e.latlng, radius).addTo(map);
   navigator.geolocation.getCurrentPosition (position) ->
     url = "/#{position.coords.latitude}/#{position.coords.longitude}"
     console.log(url)
@@ -25,7 +29,6 @@ $ ->
       success: (list) ->
         first = list[0]
         map.setView([position.coords.latitude, position.coords.longitude], getZoom(first.distance))
-        marker.openPopup()
         if first.distance < 0.2 && second.distance > 2 * first.distance
 #         only first
           showNearest(item)

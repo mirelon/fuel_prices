@@ -4,7 +4,7 @@
   #details
 #choose-from
 #map-wrapper
-  = map(center: {latlng: [48.6, 19.4], zoom: 8}, markers: @stations.map{|station| {latlng: [station.lat, station.lng], popup: link_to(station.display_name, station_path(station))}})
+  = map(markers: @stations.map{|station| {latlng: [station.lat, station.lng], popup: link_to(station.display_name, station_path(station))}})
 #pocet
   Počet čerpacích staníc na Slovensku:
   = @stations.count
