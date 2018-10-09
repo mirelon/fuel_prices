@@ -1,11 +1,9 @@
 %h1
-  = @station.name
+  = @station.display_name
 #price-wrapper
   - if @station.price
-    #{@station.price}€
-    %br
-    Posledná aktualizácia
-    = @station.posledna_aktualizacia
+    %span{style: 'background-color: yellow; color: red; font-weight: bold;'} #{@station.price}€
+    %span{style: 'color: grey;'} (#{@station.posledna_aktualizacia})
   - else
     Nikto ešte nezaznamenal cenu.
   %br/
