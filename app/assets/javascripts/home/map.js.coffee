@@ -18,6 +18,17 @@ getZoom = (distance) ->
 
 $ ->
   if map?
+    markers = L.markerClusterGroup()
+    $('#station-data li').each (i, el) ->
+      id = $(el).attr('id')
+      lat = $(el).attr('lat')
+      lng = $(el).attr('lng')
+      name = $(el).attr('name')
+      href = $(el).attr('href')
+      marker = L.marker(new L.LatLng(lat, lng))
+      marker.bindPopup("<a href=\"#{href}\">#{name}</a>")
+      markers.addLayer(marker)
+    map.addLayer(markers)
     map.locate({setView: true})
     map.on 'locationfound', (e) ->
       radius = e.accuracy / 2

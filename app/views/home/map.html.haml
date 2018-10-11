@@ -3,8 +3,11 @@
   %a#nearest-link{href: nearest_path(0,0)}
   #details
 #choose-from
+%ul#station-data{style: 'display:none;'}
+  - @stations.each do |station|
+    %li{id: station.id, lat: station.lat, lng: station.lng, name: station.display_name, href: station_path(station)}
 #map-wrapper
-  = map(markers: @stations.map{|station| {latlng: [station.lat, station.lng], popup: link_to(station.display_name, station_path(station))}})
+  = map({})
 #pocet
   Počet čerpacích staníc na Slovensku:
   = @stations.count
