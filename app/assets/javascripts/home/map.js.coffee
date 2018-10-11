@@ -33,11 +33,11 @@ $ ->
           map.setView([position.coords.latitude, position.coords.longitude], getZoom(first.distance))
           if first.distance < 0.2 && second.distance > 2 * first.distance
   #         only first
-            showNearest(item)
+            showNearest(first)
             $('#choose-from').hide()
           else if first.distance < 0.2
   #          alternatives are those with distance < 2 * first.distance
-            showNearest(item)
+            showNearest(first)
             showMultiple(list, 2 * first.distance)
           else
   #          choose from those with distance < 2 * first.distance
