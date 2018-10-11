@@ -29,6 +29,7 @@ $ ->
         url: url,
         success: (list) ->
           first = list[0]
+          second = list[1]
           map.setView([position.coords.latitude, position.coords.longitude], getZoom(first.distance))
           if first.distance < 0.2 && second.distance > 2 * first.distance
   #         only first
